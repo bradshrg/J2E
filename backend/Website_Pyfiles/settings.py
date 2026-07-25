@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'MAVJ_website.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MAVJ_website.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
