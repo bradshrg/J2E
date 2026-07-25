@@ -23,7 +23,7 @@ function Homepage() {
           <li onClick={() => handleRedirect('/live')}>Live Broadcast</li>
           <li onClick={() => handleRedirect('/recipes')}>Recipes</li>
           <li onClick={() => handleRedirect('/herbs')}>Herbs</li>
-          <li onClick={() => handleRedirect('/illnesses')}>Illnesses</li>
+          <li onClick={() => handleRedirect('/FrequencyMisalignments')}>Illnesses</li>
         </ul>
       </nav>
 
@@ -73,7 +73,7 @@ function Homepage() {
           <img src="/images/recipes.jpg" alt="Recipes" />
           <h3>Recipes</h3>
         </div>
-        <div className="category-box" onClick={() => handleRedirect('/illnesses')}>
+        <div className="category-box" onClick={() => handleRedirect('/FrequencyMisalignments')}>
           <img src="/images/illnesses.jpg" alt="Illnesses" />
           <h3>Illnesses</h3>
         </div>
