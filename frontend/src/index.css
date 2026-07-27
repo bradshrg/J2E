@@ -353,3 +353,103 @@ footer p {
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, red, gold, green, blue, indigo, violet);
 }
+
+/* =========================================================
+   MAVJ LIGHT THEME OVERRIDE
+   Converts the site from black to white while preserving
+   gold accents and readable text.
+   ========================================================= */
+
+html,
+body,
+#root {
+  background: #ffffff !important;
+  color: #1f1f1f !important;
+}
+
+.page-layout,
+.homepage-container,
+main,
+section {
+  background-color: #ffffff !important;
+}
+
+/* Main content containers */
+.multicolor-border,
+.logo-section,
+.intro-paragraph,
+.intro-paragraph p,
+.feature-box,
+.hero-title-section {
+  background-color: #ffffff !important;
+  color: #1f1f1f !important;
+}
+
+/* Standard text */
+.page-layout p,
+.page-layout li,
+.page-layout span,
+.page-layout label,
+.homepage-container p,
+.homepage-container li,
+.homepage-container span,
+.homepage-container label {
+  color: #1f1f1f;
+}
+
+/* Headings retain the site's gold branding */
+.page-layout h1,
+.page-layout h2,
+.page-layout h3,
+.page-layout h4,
+.homepage-container h1,
+.homepage-container h2,
+.homepage-container h3,
+.homepage-container h4,
+.feature-box h3 {
+  color: #9a7200 !important;
+}
+
+/* Navigation buttons */
+.menu-box {
+  background: #ffffff !important;
+  color: #8a6800 !important;
+  border-color: #b58a00 !important;
+}
+
+.menu-box:hover {
+  background: #f4d35e !important;
+  color: #111111 !important;
+}
+
+/* Cards */
+.feature-box {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.12);
+}
+
+.feature-box:hover {
+  box-shadow: 0 6px 22px rgba(154, 114, 0, 0.28);
+}
+
+/* Inputs and form controls */
+input,
+textarea,
+select {
+  background-color: #ffffff !important;
+  color: #1f1f1f !important;
+  border-color: #b8b8b8 !important;
+}
+
+/* Prevent inline black backgrounds from covering the page */
+[style*="background-color: black"],
+[style*="backgroundColor: 'black'"],
+[style*='backgroundColor: "black"'],
+[style*="background: black"] {
+  background-color: #ffffff !important;
+}
+
+/* Keep footer and page background light */
+footer {
+  background-color: #f7f7f7 !important;
+  color: #333333 !important;
+}
