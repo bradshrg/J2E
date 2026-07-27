@@ -1,71 +1,63 @@
 import React, { useContext } from 'react';
-import { TranslationContext } from './PageLayout';
 import { Link } from 'react-router-dom';
+import { TranslationContext } from './PageLayout';
 
-const VIBreadcrumbs = ({ currentPage, currentPageKey, parentPage, parentPageKey }) => {
-  const { T: t } = useContext(TranslationContext);
-  // Translation handled by PageLayout
+const VIBreadcrumbs = ({
+  currentPage = 'The Journey',
+  currentPageKey,
+  parentPage,
+  parentPageKey,
+}) => {
+  const context = useContext(TranslationContext);
+  const translate =
+    typeof context?.t === 'function'
+      ? context.t
+      : (key, fallback) => fallback || key;
 
   const breadcrumbs = [
-    { path: '/', label: t('common.home', 'Home'), icon: '🏠', linkable: true },
-    { path: '/VibrationalIntelligence', label: t('common.vibrationalIntelligence', 'Vibrational Intelligence'), icon: '🔮', linkable: true }
+    {
+      path: '/',
+      label: translate('common.home', 'Home'),
+      linkable: true,
+    },
   ];
 
-  if (parentPage) {
+  if (parentPage?.path) {
     breadcrumbs.push({
       path: parentPage.path,
-      label: t(parentPageKey, parentPage.label),
-      icon: parentPage.icon,
-      linkable: true
+      label: translate(parentPageKey, parentPage.label || 'Section'),
+      linkable: true,
     });
   }
 
   breadcrumbs.push({
     path: null,
-    label: t(currentPageKey, currentPage),
-    icon: null,
-    linkable: false
+    label: translate(currentPageKey, currentPage),
+    linkable: false,
   });
 
   return (
-    <div style={{
-      maxWidth: '1400px',
-      margin: '20px auto',
-      padding: '0 20px',
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      gap: '8px',
-      fontSize: '0.9rem'
-    }}>
-      {breadcrumbs.map((crumb, idx) => (
-        <React.Fragment key={idx}>
-          {idx > 0 && <span style={{ color: '#FFD700' }}>→</span>}
+    <nav className="breadcrumbs" aria-label="Breadcrumb">
+      {breadcrumbs.map((crumb, index) => (
+        <React.Fragment key={`${crumb.path || 'current'}-${index}`}>
+          {index > 0 && (
+            <span className="breadcrumbs__separator" aria-hidden="true">
+              /
+            </span>
+          )}
+
           {crumb.linkable ? (
-            <Link
-              to={crumb.path}
-              style={{
-                color: '#FFD700',
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-              onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-              onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-            >
-              {crumb.icon && <span>{crumb.icon}</span>}
-              <span>{crumb.label}</span>
+            <Link className="breadcrumbs__link" to={crumb.path}>
+              {crumb.label}
             </Link>
           ) : (
-            <span style={{ color: '#FFFFFF', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              {crumb.icon && <span>{crumb.icon}</span>}
-              <span>{crumb.label}</span>
+            <span className="breadcrumbs__current" aria-current="page">
+              {crumb.label}
             </span>
           )}
         </React.Fragment>
       ))}
-    </div>
+    </nav>
   );
 };
 

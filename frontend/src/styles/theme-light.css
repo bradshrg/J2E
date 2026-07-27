@@ -917,3 +917,66 @@ img {
     padding-top: 16px !important;
   }
 }
+
+/* Clean breadcrumbs for content pages */
+.breadcrumbs {
+  width: min(1000px, calc(100% - 40px));
+  margin: 24px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  color: #686868;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.breadcrumbs__link {
+  color: #5b4522;
+  text-decoration: none;
+}
+
+.breadcrumbs__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.breadcrumbs__separator {
+  color: #aaa49a;
+}
+
+.breadcrumbs__current {
+  color: #202020;
+}
+
+/* Convert The Journey's remaining inline dark text to the light theme */
+.journey-page {
+  background: #ffffff !important;
+  color: #202020 !important;
+}
+
+.journey-page h1,
+.journey-page h2,
+.journey-page h3,
+.journey-page h4 {
+  color: #493718 !important;
+  text-shadow: none !important;
+}
+
+.journey-page p,
+.journey-page span {
+  color: #555555;
+}
+
+.journey-page section > div {
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  .breadcrumbs {
+    width: calc(100% - 24px);
+    margin-top: 18px;
+  }
+}
