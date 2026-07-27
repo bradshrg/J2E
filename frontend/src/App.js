@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
 import { CartProvider } from './context/CartContext';
 import { Elements } from "@stripe/react-stripe-js";
@@ -72,6 +72,26 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/home" element={<Navigate to="/" replace />} />
+                <Route path="/Search" element={<Navigate to="/MAVJSearch" replace />} />
+                <Route path="/contact" element={<Navigate to="/ContactUs" replace />} />
+                <Route path="/privacy" element={<Navigate to="/ContactUs" replace />} />
+                <Route path="/terms" element={<Navigate to="/ContactUs" replace />} />
+                <Route path="/book" element={<Navigate to="/Consultations" replace />} />
+                <Route path="/reset" element={<Navigate to="/MAVJDetox" replace />} />
+                <Route path="/research" element={<Navigate to="/VibrationalIntelligence/QuantumResearch" replace />} />
+                <Route path="/cart" element={<Navigate to="/Checkout" replace />} />
+                <Route path="/ShoppingCart" element={<Navigate to="/Checkout" replace />} />
+                <Route path="/Q" element={<Navigate to="/" replace />} />
+                <Route path="/journey-to-enlightenment" element={<Navigate to="/Journey2Enlightenment" replace />} />
+                <Route path="/j2e-agro" element={<Navigate to="/J2EAgro" replace />} />
+                <Route path="/j2e-aqua" element={<Navigate to="/J2EAqua" replace />} />
+                <Route path="/j2e-accommodations" element={<Navigate to="/J2EAccommodations" replace />} />
+                <Route path="/vibrational-intelligence" element={<Navigate to="/VibrationalIntelligence" replace />} />
+                <Route path="/vibrational-intelligence/science-of-consciousness" element={<Navigate to="/VibrationalIntelligence/ScienceOfConsciousness" replace />} />
+                <Route path="/vibrational-intelligence/science-of-consciousness/neuro-quantics" element={<Navigate to="/VibrationalIntelligence/ScienceOfConsciousness/NeuroQuantics" replace />} />
+                <Route path="/vibrational-intelligence/science-of-consciousness/biofield-research" element={<Navigate to="/VibrationalIntelligence/ScienceOfConsciousness/BiofieldResearch" replace />} />
+                <Route path="/vibrational-intelligence/quantum-research" element={<Navigate to="/VibrationalIntelligence/QuantumResearch" replace />} />
+                <Route path="/vibrational-intelligence/quantum-research/quantum-biology-news" element={<Navigate to="/VibrationalIntelligence/QuantumResearch/QuantumBiologyNews" replace />} />
                 <Route path="/HomePage" element={<Navigate to="/" replace />} />
                 <Route path="/index" element={<Navigate to="/" replace />} />
                 <Route path="/index.html" element={<Navigate to="/" replace />} />
@@ -127,9 +147,9 @@ function App() {
                 <Route path="/VibrationalIntelligence/QuantumResearch/QuantumBiologyNews" element={<QuantumBiologyNews />} />
                 <Route path="/VibrationalIntelligence/CommunityField" element={<CommunityField />} />
                 <Route path="*" element={
-                  <div style={{ padding: '20px', textAlign: 'center', color: '#FFD700' }}>
+                  <div className="not-found">
                     <h1>404 - Page Not Found</h1>
-                    <p>Return to <a href="/" style={{ color: '#00d4ff' }}>Homepage</a></p>
+                    <p>Return to <Link to="/" style={{ color: '#075985' }}>Homepage</Link></p>
                   </div>
                 } />
               </Routes>

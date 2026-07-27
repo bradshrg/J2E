@@ -10,7 +10,7 @@ const Navbar = () => {
         <NavLink to="/" className="navbar-link">💦 MAVJHome 💦</NavLink>
         <NavLink to="/TheJourney" className="navbar-link">🌴 TheJourney 🌴</NavLink>
         <NavLink to="/AlignWithUs" className="navbar-link">🎉 AlignWithUs 🎉</NavLink>
-        <NavLink to="/Search" className="navbar-link">🔎 MAVJSearch 🔎</NavLink>
+        <NavLink to="/MAVJSearch" className="navbar-link">🔎 MAVJSearch 🔎</NavLink>
         <NavLink to="/LiveBroadcast" className="navbar-link">📺 LiveBroadcast 📺</NavLink>
         <NavLink to="/MAVJStore" className="navbar-link">💦 MAVJStore 💦</NavLink>
         <NavLink to="/PodcastVlog" className="navbar-link">🔥 Podcast/Vlog 🔥</NavLink>

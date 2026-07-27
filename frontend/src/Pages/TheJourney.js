@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { TranslationContext } from "../components/PageLayout.jsx";
 import { Link } from "react-router-dom";
 import VIBreadcrumbs from "../components/VIBreadcrumbs.jsx";
-import PageLayout from "../components/PageLayout.jsx";
 
 const TheJourney = () => {
   const { t } = useContext(TranslationContext);
@@ -57,7 +56,7 @@ const TheJourney = () => {
   };
 
   return (
-    <PageLayout>
+    <div className="content-page journey-page">
       <VIBreadcrumbs />
       
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
@@ -188,7 +187,7 @@ const TheJourney = () => {
         </div>
 
       </div>
-    </PageLayout>
+    </div>
   );
 };
 
