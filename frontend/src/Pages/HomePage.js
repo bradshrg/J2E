@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useCallback, useRef, useEffect, useMemo, useContext } from 'react';
 import DOMPurify from 'dompurify';
-import Layout, { TranslationContext } from '../components/PageLayout';
+import { TranslationContext } from '../components/PageLayout';
 
 const HomePage = () => {
   const { currentLang: currentLanguage, setCurrentLang: setCurrentLanguage, T } = useContext(TranslationContext);
@@ -1938,7 +1938,7 @@ const handleLanguageChange = useCallback((lang) => {
 
     qCloseButton: {
       background: 'rgba(255, 0, 0, 0.8)',
-      color: '#fff',
+      color: '#1f2937',
       border: 'none',
       borderRadius: '50%',
       width: '26px', // REDUCED FROM 28px
@@ -2285,20 +2285,11 @@ const handleLanguageChange = useCallback((lang) => {
   // ==================== RENDER ====================
   
   return (
-    <Layout pageTitle="HOME">
-      <div style={styles.mainContainer}>
+    <div className="mavj-home" style={styles.mainContainer}>
     
 
 {/* THE ANNOUNCEMENT PORTALS */}
-<div style={{
-  position: 'relative',
-  marginTop: '-60px',
-          backgroundImage: 'url(/images/Robin.jpeg)',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center 30%',
-  backgroundAttachment: 'scroll',
-  backgroundRepeat: 'no-repeat'
-}}>
+<div className="home-announcements">
   {/* Dark overlay for readability */}
 
 
@@ -2326,7 +2317,7 @@ const handleLanguageChange = useCallback((lang) => {
             flex: '1 1 280px',
             maxWidth: '300px',
             minWidth: '260px',
-            background: 'rgba(0,0,0,0.88)', 
+            background: '#ffffff', 
             borderRadius: '12px', 
             border: '2px solid transparent',
             borderImage: 'linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #f59e0b) 1',
@@ -2341,7 +2332,7 @@ const handleLanguageChange = useCallback((lang) => {
               <h3 style={{ color: '#FFD700', fontSize: '1rem', fontWeight: '900', marginBottom: '6px' }}>
                 {announcement.icon} {announcement.title}
               </h3>
-              <p style={{ color: '#fff', fontSize: '0.8rem', marginBottom: '12px', lineHeight: '1.35' }}>
+              <p style={{ color: '#1f2937', fontSize: '0.8rem', marginBottom: '12px', lineHeight: '1.35' }}>
                 {announcement.description}
               </p>
 
@@ -2368,7 +2359,7 @@ const handleLanguageChange = useCallback((lang) => {
                   </div>
 
                   <div style={{
-                    background: 'rgba(0,0,0,0.5)',
+                    background: '#f8fafc',
                     borderRadius: '8px',
                     padding: '8px',
                     marginBottom: '10px'
@@ -2407,7 +2398,7 @@ const handleLanguageChange = useCallback((lang) => {
                     <p style={{ color: '#FFD700', fontSize: '0.65rem', fontWeight: 'bold', marginBottom: '2px' }}>
                       🔥 {T.announcements?.j2e_teaser_title || 'WHAT AWAITS YOU:'}
                     </p>
-                    <p style={{ color: '#ddd', fontSize: '0.6rem', lineHeight: '1.3', margin: 0 }}>
+                    <p style={{ color: '#4b5563', fontSize: '0.6rem', lineHeight: '1.3', margin: 0 }}>
                       {T.announcements?.j2e_teaser || 'Walk the volcanic soils of St. Lucia. Sleep in frequency-tuned pods. Dive into crystal waters. Align with 1,111 souls at the exact moment of 11:11.'}
                     </p>
                   </div>
@@ -2442,7 +2433,7 @@ const handleLanguageChange = useCallback((lang) => {
                         {T.announcements?.live_next || 'NEXT BROADCAST:'}
                       </span>
                     </div>
-                    <p style={{ color: '#fff', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' }}>
+                    <p style={{ color: '#1f2937', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' }}>
                       {T.announcements?.live_title || 'Quantum Biology & Cellular Regeneration'}
                     </p>
                     <p style={{ color: '#FFD700', fontSize: '0.6rem' }}>
@@ -2450,7 +2441,7 @@ const handleLanguageChange = useCallback((lang) => {
                     </p>
                   </div>
                   <div style={{
-                    background: 'rgba(0,0,0,0.4)',
+                    background: '#f8fafc',
                     borderRadius: '6px',
                     padding: '6px',
                     textAlign: 'center'
@@ -2475,7 +2466,7 @@ const handleLanguageChange = useCallback((lang) => {
                     <p style={{ color: '#FFD700', fontSize: '0.6rem', fontWeight: 'bold', marginBottom: '2px' }}>
                       {T.announcements?.shipTo || '📦 SHIP TO:'}
                     </p>
-                    <p style={{ color: '#DDD6B8', fontSize: '0.55rem', lineHeight: '1.2', margin: 0 }}>
+                    <p style={{ color: '#4b5563', fontSize: '0.55rem', lineHeight: '1.2', margin: 0 }}>
                       MY ALKALINE VEGAN JOURNEY<br/>
                       2281 NW 82nd Ave, STE. SLU114258<br/>
                       Doral, FL 33198-6511
@@ -2530,7 +2521,7 @@ const handleLanguageChange = useCallback((lang) => {
                         >
                           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                             <span style={{ fontSize: '0.9rem' }}>{item.icon}</span>
-                            <span style={{ color: '#fff', fontSize: '0.55rem' }}>{item.label}</span>
+                            <span style={{ color: '#1f2937', fontSize: '0.55rem' }}>{item.label}</span>
                           </div>
                           <span style={{ color: '#FFD700', fontSize: '0.55rem', fontWeight: 'bold' }}>{item.price}</span>
                         </a>
@@ -2560,7 +2551,7 @@ const handleLanguageChange = useCallback((lang) => {
                   <p style={{ color: '#8b5cf6', fontSize: '0.65rem', fontWeight: 'bold', marginBottom: '4px' }}>
                     🔮 {T.announcements?.viLatest || 'Latest Discovery:'}
                   </p>
-                  <p style={{ color: '#fff', fontSize: '0.65rem', lineHeight: '1.3', marginBottom: '4px' }}>
+                  <p style={{ color: '#1f2937', fontSize: '0.65rem', lineHeight: '1.3', marginBottom: '4px' }}>
                     {T.announcements?.viContent || 'Quantum coherence in microtubules confirmed at body temperature'}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -2586,7 +2577,7 @@ const handleLanguageChange = useCallback((lang) => {
                   <p style={{ color: '#ec4899', fontSize: '0.65rem', fontWeight: 'bold', marginBottom: '4px' }}>
                     🌍 {T.announcements?.flashMob || 'GLOBAL FLASH MOB'}
                   </p>
-                  <p style={{ color: '#fff', fontSize: '0.65rem', lineHeight: '1.3', marginBottom: '4px' }}>
+                  <p style={{ color: '#1f2937', fontSize: '0.65rem', lineHeight: '1.3', marginBottom: '4px' }}>
                     {T.announcements?.flashMobDesc || 'Submit your 30-second dance clip! Join dancers worldwide in synchronized celebration.'}
                   </p>
                   <div>
@@ -2609,7 +2600,7 @@ const handleLanguageChange = useCallback((lang) => {
                   <p style={{ color: '#4CAF50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' }}>
                     🛒 {T.announcements?.storeSale || '50% OFF • ST. LUCIAN SEA MOSS GEL'}
                   </p>
-                  <p style={{ color: '#fff', fontSize: '0.6rem', lineHeight: '1.3', marginBottom: '4px' }}>
+                  <p style={{ color: '#1f2937', fontSize: '0.6rem', lineHeight: '1.3', marginBottom: '4px' }}>
                     {T.announcements?.storeDesc || 'Harvested from volcanic waters. Gelatinous, potent, lab-tested.'}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -2661,7 +2652,7 @@ const handleLanguageChange = useCallback((lang) => {
         <h2 style={{ color: '#FFD700', textAlign: 'center', fontSize: '1.9rem', marginBottom: '20px' }}>
           {T.quantumJourney?.title || 'The Quantum Journey'}
         </h2>
-        <div style={{ color: '#fff', fontSize: '0.95rem', lineHeight: '1.65' }}>
+        <div style={{ color: '#1f2937', fontSize: '0.95rem', lineHeight: '1.65' }}>
           <p>{T.quantumJourney?.p1 || 'My experience during my 40-day Total Reset allowed me to visualize what I call the Godspace—a realm beyond euphoria, beyond bliss. This space is a combnation of immence peace and joy with insane clarity and sharp intuition. It is now well known throughout the scientific community the overwhelming positive benefits of reset detoxification. The activation of the stem cells and the growth hormones that are directly related to rebuilding and replacing damaged cells. The eradication of visceral fat which is known to be found around vital organs and inclusive of cells that damage the body. The visceral fat contributes to that belly, arm and back fat that seems impossible to remove.'}</p>
           <p style={{ marginTop: '12px' }}>{T.quantumJourney?.p2 || 'This reset makes your immune system bulletproof. I survived living in a home where everyone had COVID, and I never experienced a single symptom.'}</p>
           
@@ -2807,7 +2798,7 @@ const handleLanguageChange = useCallback((lang) => {
       textAlign: 'center'
     }}>
       <h3 style={{ color: '#FFD700', fontSize: '1rem', marginBottom: '12px' }}>📖 Brian's Story</h3>
-      <p style={{ color: '#fff', fontSize: '0.75rem', lineHeight: '1.5' }}>
+      <p style={{ color: '#1f2937', fontSize: '0.75rem', lineHeight: '1.5' }}>
         "Brian spoke one sentence, and every word carried something other than positive. 
         On the spot, I translated it into a sentence that was completely positive. 
         Every word we speak is a frequency."
@@ -2845,10 +2836,10 @@ const handleLanguageChange = useCallback((lang) => {
           <span style={{ color: '#00d4ff', fontWeight: 'bold', fontSize: '0.9rem' }}>{familyMemberNumber || '---'}</span>
         </div>
         <div style={{ display: 'flex', gap: '15px' }}>
-          <div><span style={{ color: '#FFD700' }}>🔥</span> <span style={{ color: '#fff' }}>{positiveGame?.streak || 0}</span></div>
-          <div><span style={{ color: '#00d4ff' }}>✨</span> <span style={{ color: '#fff' }}>{positiveGame?.score || 0}</span></div>
-          <div><span style={{ color: '#FFD700' }}>🪙</span> <span style={{ color: '#fff' }}>{positiveGame?.coins || 0}</span></div>
-          <div><span style={{ color: '#00d4ff' }}>⭐</span> <span style={{ color: '#fff' }}>LVL {currentLevel}</span></div>
+          <div><span style={{ color: '#FFD700' }}>🔥</span> <span style={{ color: '#1f2937' }}>{positiveGame?.streak || 0}</span></div>
+          <div><span style={{ color: '#00d4ff' }}>✨</span> <span style={{ color: '#1f2937' }}>{positiveGame?.score || 0}</span></div>
+          <div><span style={{ color: '#FFD700' }}>🪙</span> <span style={{ color: '#1f2937' }}>{positiveGame?.coins || 0}</span></div>
+          <div><span style={{ color: '#00d4ff' }}>⭐</span> <span style={{ color: '#1f2937' }}>LVL {currentLevel}</span></div>
         </div>
         <button
           onClick={() => setShowBrianStory(true)}
@@ -3148,7 +3139,7 @@ const handleLanguageChange = useCallback((lang) => {
             background: 'linear-gradient(135deg, #00d4ff, #8b5cf6)',
             border: 'none',
             borderRadius: '40px',
-            color: '#fff',
+            color: '#1f2937',
             fontSize: '0.85rem',
             fontWeight: 'bold',
             cursor: 'pointer'
@@ -3160,7 +3151,7 @@ const handleLanguageChange = useCallback((lang) => {
 
       {/* WORD BANK */}
       <div style={{
-        background: 'rgba(0,0,0,0.5)',
+        background: '#f8fafc',
         borderRadius: '15px',
         padding: '10px',
         margin: '10px 0',
@@ -3224,7 +3215,7 @@ const handleLanguageChange = useCallback((lang) => {
             background: 'linear-gradient(135deg, #00d4ff, #8b5cf6)',
             border: 'none',
             borderRadius: '30px',
-            color: '#fff',
+            color: '#1f2937',
             fontSize: '0.7rem',
             fontWeight: 'bold',
             cursor: 'pointer'
@@ -3263,7 +3254,7 @@ const handleLanguageChange = useCallback((lang) => {
       textAlign: 'center'
     }}>
       <h3 style={{ color: '#00d4ff', fontSize: '1rem', marginBottom: '12px' }}>✨ The Frequency Principle</h3>
-      <p style={{ color: '#fff', fontSize: '0.75rem', lineHeight: '1.5' }}>
+      <p style={{ color: '#1f2937', fontSize: '0.75rem', lineHeight: '1.5' }}>
         "Every word carries a frequency. Positive words raise your vibration. 
         Choose words that heal, uplift, and transform. Your language shapes your reality."
       </p>
@@ -3348,11 +3339,11 @@ const handleLanguageChange = useCallback((lang) => {
         ✕
       </button>
       <h2 style={{ color: '#FFD700', marginBottom: '15px', fontSize: '1.3rem' }}>📖 Brian's Story</h2>
-      <p style={{ color: '#fff', lineHeight: '1.5', marginBottom: '12px', fontSize: '0.85rem' }}>
+      <p style={{ color: '#1f2937', lineHeight: '1.5', marginBottom: '12px', fontSize: '0.85rem' }}>
         Brian spoke one sentence, and every word carried something other than positive. 
         On the spot, I translated it into a sentence that was completely positive.
       </p>
-      <p style={{ color: '#fff', lineHeight: '1.5', marginBottom: '12px', fontSize: '0.85rem' }}>
+      <p style={{ color: '#1f2937', lineHeight: '1.5', marginBottom: '12px', fontSize: '0.85rem' }}>
         That moment revealed the power of conscious language. Every word we speak is a frequency.
       </p>
       <p style={{ color: '#FFD700', fontStyle: 'italic', fontSize: '0.85rem' }}>
@@ -3594,329 +3585,23 @@ const handleLanguageChange = useCallback((lang) => {
         </button>
       </section>
 
-      {/* CONTAINER 6: QUANTUM PHYSICS FOUNDATION - FIXED VIDEO GALLERY */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Quantum Physics Foundation</h2>
-        
-        <div style={styles.videosGrid}>
-          {videos.map((video) => (
-            <div key={video.id} style={styles.videoCard}>
-              <div style={styles.videoContainer}>
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.title} 
-                  style={styles.videoThumbnail}
-                  onError={(e) => { 
-                    e.target.onerror = null; 
-                    e.target.src = '/J2E/images/photos.png';
-                  }}
-                  onLoad={() => handleVideoLoad(video.id)}
-                  onErrorCapture={() => handleVideoError(video.id)}
-                  onLoadStart={() => handleVideoLoadStart(video.id)}
-                />
-                {videoLoading[video.id] && (
-                  <div style={styles.videoLoadingOverlay}>
-                    Loading video...
-                  </div>
-                )}
-              </div>
-              <div style={styles.videoContent}>
-                <h3 style={{color: '#FFD700', marginBottom: '6px', fontSize: '0.95rem'}}>{video.title}</h3>
-                <p style={{color: '#ccc', fontSize: '0.8rem', marginBottom: '10px'}}>{video.desc}</p>
-                <a 
-                  href={video.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{
-                    color: '#FFD700',
-                    fontWeight: '700',
-                    textDecoration: 'none',
-                    fontSize: '0.85rem'
-                  }}
-                  onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                  onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-                >
-                  Watch Now →
-                </a>
-              </div>
-            </div>
-          ))}
+      {/* COMPACT HOMEPAGE NAVIGATION */}
+      <section className="home-explore">
+        <h2>Explore the Journey</h2>
+        <p>
+          Continue through the focused pages instead of loading every
+          program, gallery, artisan profile, and research section here.
+        </p>
+        <div className="home-explore-grid">
+          <a href="/TheJourney">The Journey</a>
+          <a href="/Recipes">Recipes</a>
+          <a href="/MAVJStore">Store</a>
+          <a href="/Journey2Enlightenment">Journey 2 Enlightenment</a>
+          <a href="/VibrationalIntelligence">Vibrational Intelligence</a>
+          <a href="/AlignWithUs">Align With Us</a>
         </div>
       </section>
 
-      {/* CONTAINER 7: WHAT WE OFFER */}
-      <section style={{...styles.section, backgroundImage: 'url(/J2E/images/photos.png)', backgroundSize: '100px', backgroundColor: 'rgba(0,0,0,0.9)', backgroundBlendMode: 'overlay'}}>
-        <h2 style={styles.sectionTitle}>What We Offer</h2>
-        
-        <div style={styles.offersGrid}>
-          {offers.map((offer, i) => (
-            <div 
-              key={i} 
-              style={styles.offerCard}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div style={styles.offerIcon}>{offer.icon}</div>
-              <h3 style={{color: '#FFD700', marginBottom: '10px', fontSize: '1rem'}}>{offer.title}</h3>
-              <p style={{marginBottom: '12px', fontSize: '0.85rem'}}>{offer.desc}</p>
-              <a 
-                href={offer.link}
-                style={{
-                  color: '#FFD700',
-                  fontWeight: '700',
-                  textDecoration: 'none',
-                  fontSize: '0.85rem'
-                }}
-                onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-              >
-                Learn More →
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CONTAINER 8: WHAT WE'RE BUILDING */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>What We're Building</h2>
-        
-        <div style={styles.buildingGrid}>
-          {building.map((item, i) => (
-            <div key={i} style={styles.buildingCard}>
-              <div style={styles.offerIcon}>{item.icon}</div>
-              <h3 style={{color: '#FFD700', marginBottom: '10px', fontSize: '1rem'}}>{item.title}</h3>
-              <p style={{marginBottom: '12px', fontSize: '0.85rem'}}>{item.desc}</p>
-              <img 
-                src={item.thumbnail} 
-                alt={item.title}
-                style={{width: '100%', height: '100px', objectFit: 'cover', borderRadius: '6px', marginBottom: '10px'}}
-                onError={(e) => { 
-                  e.target.onerror = null; 
-                  e.target.src = '/J2E/images/photos.png';
-                }}
-              />
-              <div style={{
-                ...styles.statusBadge,
-                backgroundColor: item.status === 'IN PROGRESS' ? 'rgba(0,255,0,0.2)' : 'rgba(255,165,0,0.2)',
-                color: item.status === 'IN PROGRESS' ? 'green' : 'orange',
-                border: `1px solid ${item.status === 'IN PROGRESS' ? 'green' : 'orange'}`
-              }}>
-                {item.status}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-  {/* ==================== CONTAINER 9: ST. LUCIAN ARTISANS (FINAL VETTED) ==================== */}
-{(() => {
-  const stLucianArtisanPortal = [
-    {
-      name: 'Julian The Coconut Artist',
-      specialty: 'Sculpting beautiful functional art out of Fresh St. Lucian Coconuts',
-      description: 'Master coconut sculptor creating functional art pieces out of fresh St. Lucian coconuts.',
-      location: 'Castries Market Arcade, St. Lucia',
-      image: '/images/JulianCoconutArtist.png',
-      workImage: '/images/JulianBirdFeeders.png'
-    },
-    {
-      name: 'Kurt The Fisherman',
-      specialty: 'Sustainable Traditional Fishing',
-      description: 'Master of the sea, specializing in Red Snapper and deep-sea tradition.',
-      location: 'Tou Rouge, Castries, St. Lucia',
-      image: '/images/KurtTheFISHERMAN.png',
-      workImage: '/images/KurtwithSnapper.png'
-    },
-    {
-      name: 'Brittany',
-      specialty: '100% ALL NATURAL Creams and scrubs and Fermetations',
-      description: 'Crafting organic scrubs and bio-active fermentations for holistic skin health.',
-      location: 'Washington, DC and Gros Islet St. Lucia',
-      image: '/images/Brittany.png',
-      workImage: "/images/BrittanyCreamsFermentations.png"
-    },
-    {
-      name: 'Anthony The Barber',
-      specialty: 'Precision Grooming & Self-Cut Artistry',
-      description: 'Expert barbering focused on sharp aesthetics and personal frequency.',
-      location: 'St. Lucia',
-      image: '/images/AnthonyTheBarber.png',
-      workImage: '/images/AnthonyTheBarberSelfCut.png'
-    },
-    {
-      name: 'King Khaled',
-      specialty: 'Rastafarian Organic Farmer',
-      description: 'Guardian of the soil at the Rastafarian Farm, growing high-vibration organic produce.',
-      location: 'Des Barras, St. Lucia',
-      image: '/images/KingKhaled.jpg',
-      workImage: '/images/DesBarras.jpeg'
-    },
-    {
-      name: 'Reggie The Builder',
-      specialty: 'Official Recycle Man & Construction',
-      description: 'Building sustainable structures and leading the recycling movement in Black Mallet.',
-      location: 'Black Mallet, St. Lucia',
-      image: '/images/REGGIE.jpeg',
-      workImage: '/images/ReggieBuilderRecycleMan.png'
-    },
-    {
-      name: 'Simeon',
-      specialty: 'The Horse Trainer',
-      description: 'Managing the sanctuary and training horses at the Rastafarian farm.',
-      location: 'Des Barras, St. Lucia',
-      image: '/images/Simeon.png',
-      workImage: '/images/HorseOnFarm.jpeg'
-    }
-  ];
-
-  return (
-    <section id="artisan-section" style={{ padding: '80px 20px', background: 'transparent' }}>
-      <h2 style={{ 
-        textAlign: 'center', 
-        color: '#FFD700', 
-        fontSize: '2.5rem', 
-        marginBottom: '60px', 
-        textTransform: 'uppercase',
-        letterSpacing: '2px' 
-      }}>
-        St. Lucian Artisans
-      </h2>
-      
-      <div style={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        justifyContent: 'center', 
-        gap: '40px', 
-        maxWidth: '1600px', 
-        margin: '0 auto' 
-      }}>
-        {stLucianArtisanPortal.map((person, i) => (
-          <div key={i} style={{ 
-            width: '320px', 
-            background: 'rgba(0, 0, 0, 0.9)', 
-            borderRadius: '20px', 
-            border: '3px solid #FFD700', 
-            overflow: 'hidden',
-            boxShadow: '0 10px 40px rgba(0, 206, 209, 0.3)'
-          }}>
-            {/* DUAL PHOTO EXPOSURE STACK: 400px Total Height */}
-            <div style={{ height: '400px', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ 
-                flex: 1, 
-                backgroundImage: `url(${person.image})`, 
-                backgroundSize: 'cover', 
-                backgroundPosition: 'center',
-                borderBottom: '2px solid #FFD700' 
-              }}></div>
-              <div style={{ 
-                flex: 1, 
-                backgroundImage: `url(${person.workImage})`, 
-                backgroundSize: 'cover', 
-                backgroundPosition: 'center' 
-              }}></div>
-            </div>
-
-            {/* ARTISAN TEXT CONTENT */}
-            <div style={{ padding: '25px', textAlign: 'center' }}>
-              <h3 style={{ color: '#FFD700', fontSize: '1.3rem', margin: '0 0 10px 0' }}>{person.name}</h3>
-              <div style={{ color: '#00d4ff', fontSize: '0.9rem', fontWeight: 'bold' }}>{person.specialty}</div>
-              <p style={{ color: '#DDD6B8', fontSize: '0.8rem', marginTop: '10px', lineHeight: '1.5' }}>{person.description}</p>
-              <div style={{ marginTop: '15px', color: '#888', fontSize: '0.7rem' }}>📍 {person.location}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-})()}
-      {/* CONTAINER 10: 11:11 GLOBAL FREQUENCY CONVERGENCE */}
-      <section style={{...styles.section, backgroundImage: 'url(/J2E/images/photos.png)', backgroundSize: '100px', backgroundColor: 'rgba(0,0,0,0.9)', backgroundBlendMode: 'overlay'}}>
-        <div style={styles.convergenceContent}>
-          <h2 style={styles.sectionTitle}>✨ 11:11 GLOBAL FREQUENCY CONVERGENCE ✨</h2>
-          <div style={styles.eventDate}>
-            <div style={styles.dateNumber}>11</div>
-            <div style={{color: '#FFD700', fontSize: '1.3rem'}}>•</div>
-            <div style={styles.dateNumber}>11</div>
-            <div style={{color: '#FFD700', fontSize: '1.3rem'}}>•</div>
-            <div style={styles.dateNumber}>2026</div>
-          </div>
-          
-          <h3 style={{fontSize: '1.2rem', color: '#FFD700', margin: '12px 0'}}>
-            St. Lucia • Live Speakers • Golf • Gala
-          </h3>
-          <p style={{fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto 20px'}}>
-            When the world synchronizes at 1111 Hz. Join thousands in raising global consciousness.
-          </p>
-          
-          <a 
-            href="/Journey2Enlightenment" 
-            style={styles.convergenceLink}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.03)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-          >
-            🔮 Learn More About 11:11 →
-          </a>
-        </div>
-      </section>
-
-      {/* CONTAINER 11: LINKING REALITY TO FREQUENCY (PHOTO GALLERY) */}
-  {/* CONTAINER 11: LINKING REALITY TO FREQUENCY (PHOTO GALLERY) */}
-<section style={styles.section}>
-  <h2 style={styles.sectionTitle}>Linking Reality to Frequency</h2>
-  <div style={styles.galleryGrid}>
-    <img
-      src="/images/BeachDinner.png"
-      alt="MAVJ Logo"
-      style={styles.galleryImage}
-      loading="lazy"
-      onError={(e) => { 
-        e.target.onerror = null; 
-        e.target.src = '/J2E/images/photos.png';
-      }}
-    />
-    <img
-      src="/images/DesBarras.jpeg"
-      alt="Des Barres Road"
-      style={styles.galleryImage}
-      loading="lazy"
-      onError={(e) => { 
-        e.target.onerror = null; 
-        e.target.src = '/J2E/images/photos.png';
-      }}
-    />
-    <img
-      src="/images/BigTent.jpeg"
-      alt="Big Tent"
-      style={styles.galleryImage}
-      loading="lazy"
-      onError={(e) => { 
-        e.target.onerror = null; 
-        e.target.src = '/J2E/images/photos.png';
-      }}
-    />
-    <img
-      src="/images/SL.png"
-      alt="Res Tents"
-      style={styles.galleryImage}
-      loading="lazy"
-      onError={(e) => { 
-        e.target.onerror = null; 
-        e.target.src = '/J2E/images/photos.png';
-      }}
-    />
-    <img
-      src="/images/Diving-in-St-Thomas.jpg"
-      alt="Dive"
-      style={styles.galleryImage}
-      loading="lazy"
-      onError={(e) => { 
-        e.target.onerror = null; 
-        e.target.src = '/J2E/images/photos.png';
-      }}
-    />
-  </div>
-</section>
       {/* CONTAINER 12: UNIVERSAL FOOTER */}
       <footer style={styles.footer}>
         <p style={{color: '#FFD700', fontWeight: '700', marginBottom: '12px'}}>
@@ -3977,9 +3662,9 @@ const handleLanguageChange = useCallback((lang) => {
         </div>
         
         <div style={{marginTop: '12px', fontSize: '0.75rem', color: '#aaa'}}>
-          <a href="/privacy" style={{color: '#FFD700', margin: '0 8px'}}>Privacy Policy</a>
-          <a href="/terms" style={{color: '#FFD700', margin: '0 8px'}}>Terms of Service</a>
-          <a href="/contact" style={{color: '#FFD700', margin: '0 8px'}}>Contact</a>
+          <a href="/ContactUs" style={{color: '#FFD700', margin: '0 8px'}}>Privacy Policy</a>
+          <a href="/ContactUs" style={{color: '#FFD700', margin: '0 8px'}}>Terms of Service</a>
+          <a href="/ContactUs" style={{color: '#FFD700', margin: '0 8px'}}>Contact</a>
         </div>
       </footer>
 <div style={styles.disclaimerBar}>
@@ -4243,7 +3928,7 @@ const handleLanguageChange = useCallback((lang) => {
         `}
         </style>
           </div>
-      </Layout>
+      
     );
 };  
 

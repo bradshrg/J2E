@@ -53,3 +53,17 @@ Desktop.ini
 # --- COMMENT ON DEPLOYMENT ---
 # DO NOT IGNORE `.nojekyll` — it is needed for GitHub Pages + React
 # DO NOT IGNORE `index.html` inside the React /build folder
+
+# Local/generated material
+_Archive/
+temp_backup/
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+frontend/build/
+frontend/src/**/*.backup*
+frontend/src/**/*.bak*
+frontend/src/**/*.before_*
+frontend/src/**/*.broken
+J2E-*.zip

@@ -2732,26 +2732,39 @@ brian_button: "Continue Your Journey",
   const displayTitle = pageTitle === 'HOME' ? T.pt : pageTitle;
 
   const btnStyle = (active) => ({
-    color: '#FFD700', fontSize: '0.7rem', padding: '4px 8px', minWidth: '110px', maxWidth: '130px',
+    color: '#624d00', fontSize: '0.7rem', padding: '4px 8px', minWidth: '110px', maxWidth: '130px',
     textAlign: 'center', justifyContent: 'center', border: '2px solid',
     borderImage: 'linear-gradient(135deg, #FFD700, #00d4ff) 1', borderRadius: '4px',
-    background: active ? 'linear-gradient(135deg,rgba(255,215,0,0.3),rgba(0,212,255,0.3))' : 'rgba(0,0,0,0.7)',
+    background: active ? '#fff3bf' : '#ffffff',
     fontWeight: '700', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-    boxShadow: '0 0 6px rgba(255,215,0,0.3)', display: 'flex', alignItems: 'center', gap: '3px',
+    boxShadow: '0 2px 8px rgba(31,41,55,0.10)', display: 'flex', alignItems: 'center', gap: '3px',
     flexShrink: 0, minHeight: '28px', cursor: 'pointer', transition: 'all 0.3s ease'
   });
 
+
+  const t = useCallback((key, fallback) => {
+    const value = String(key)
+      .split('.')
+      .reduce((current, part) => (
+        current && Object.prototype.hasOwnProperty.call(current, part)
+          ? current[part]
+          : undefined
+      ), T);
+
+    return value ?? fallback ?? key;
+  }, [T]);
+
   return (
-    <TranslationContext.Provider value={{ currentLang, setCurrentLang, T, LANGS, translations: T }}>
+    <TranslationContext.Provider value={{ currentLang, setCurrentLang, T, t, LANGS, translations: T }}>
       <>
         <nav style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000, borderTop: '5px solid #FFD700',
-          background: 'linear-gradient(135deg,rgba(26,26,26,0.98),rgba(10,10,10,0.98))', padding: '0 6px',
+          background: 'rgba(255,255,255,0.98)', padding: '0 6px',
           borderBottom: '3px solid', borderImage: 'linear-gradient(45deg,violet,indigo,blue,green,yellow,orange,red) 1',
-          backdropFilter: 'blur(10px)', boxShadow: '0 4px 20px rgba(0,0,0,0.5)', height: '45px',
+          backdropFilter: 'blur(10px)', boxShadow: '0 4px 18px rgba(31,41,55,0.12)', height: '45px',
           display: 'flex', alignItems: 'center', gap: '4px'
         }}>
-          <span style={{ color:'#FFD700', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>◀</span>
+          <span style={{ color:'#725800', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>◀</span>
           <div style={{
             display:'flex', overflowX:'auto', overflowY:'visible', gap:'5px', flex:1, padding:'0 4px',
             scrollbarWidth:'none', msOverflowStyle:'none', WebkitOverflowScrolling:'touch', alignItems:'center'
@@ -2763,7 +2776,7 @@ brian_button: "Continue Your Journey",
                     <div style={{ ...btnStyle(false), minWidth:'130px', justifyContent:'space-between', gap:'4px' }}
                       onClick={() => setShowDropdown(p => !p)}
                       onMouseEnter={(e) => { e.currentTarget.style.background='linear-gradient(135deg,rgba(255,215,0,0.5),rgba(0,212,255,0.5))'; e.currentTarget.style.boxShadow='0 0 15px rgba(255,215,0,1)'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.background='rgba(0,0,0,0.7)'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
+                      onMouseLeave={(e) => { e.currentTarget.style.background='#ffffff'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
                       <span>🌐 {activeLangObj.flag}</span>
                       <span style={{ flex:1, textAlign:'center' }}>{currentLang}</span>
                       <span style={{ fontSize:'0.5rem' }}>{showDropdown ? '▲' : '▼'}</span>
@@ -2774,14 +2787,14 @@ brian_button: "Continue Your Journey",
                         borderImage:'linear-gradient(135deg,#FFD700,#00d4ff,#FF00FF,#FFD700) 1', borderRadius:'6px',
                         minWidth:'175px', maxHeight:'440px', overflowY:'auto', zIndex:99999, boxShadow:'0 10px 40px rgba(0,0,0,0.99)'
                       }}>
-                        <div style={{ padding:'8px 14px', borderBottom:'1px solid rgba(255,215,0,0.4)', color:'#FFD700',
+                        <div style={{ padding:'8px 14px', borderBottom:'1px solid rgba(255,215,0,0.4)', color:'#725800',
                           fontSize:'0.65rem', fontWeight:'900', textTransform:'uppercase', letterSpacing:'1.2px', background:'rgba(255,215,0,0.08)' }}>
                           🌐 Select Language
                         </div>
                         {LANGS.map((lang) => (
                           <div key={lang.name} style={{
                             background: lang.name===currentLang ? 'rgba(255,215,0,0.22)':'transparent',
-                            color:'#FFD700', borderBottom:'1px solid rgba(255,215,0,0.08)', padding:'9px 14px', cursor:'pointer',
+                            color:'#725800', borderBottom:'1px solid rgba(255,215,0,0.08)', padding:'9px 14px', cursor:'pointer',
                             fontSize:'0.75rem', fontWeight:'700', display:'flex', alignItems:'center', gap:'10px', transition:'background 0.15s ease'
                           }}
                             onClick={() => handleLangChange(lang.name)}
@@ -2801,28 +2814,28 @@ brian_button: "Continue Your Journey",
                 <div key={item.path} style={btnStyle(location.pathname === item.path)}
                   onClick={() => handleNav(item.path)}
                   onMouseEnter={(e) => { e.currentTarget.style.background='linear-gradient(135deg,rgba(255,215,0,0.5),rgba(0,212,255,0.5))'; e.currentTarget.style.boxShadow='0 0 15px rgba(255,215,0,1)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background= location.pathname===item.path ? 'linear-gradient(135deg,rgba(255,215,0,0.3),rgba(0,212,255,0.3))':'rgba(0,0,0,0.7)'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
+                  onMouseLeave={(e) => { e.currentTarget.style.background= location.pathname===item.path ? 'linear-gradient(135deg,rgba(255,215,0,0.3),rgba(0,212,255,0.3))':'#ffffff'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
                   <span>{item.icon}</span>
                   <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '90px' }}>{item.label}</span>
                 </div>
               );
             })}
           </div>
-          <span style={{ color:'#FFD700', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>▶</span>
+          <span style={{ color:'#725800', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>▶</span>
         </nav>
 
         <section style={{
           position:'fixed', top:'45px', left:0, right:0, zIndex:1900, border:'3px solid',
           borderImage:'linear-gradient(45deg,violet,indigo,blue,green,yellow,orange,red) 1',
-          backgroundColor:'rgba(0,0,0,0.82)', backgroundImage:'url(/images/star-pattern.png)',
+          backgroundColor:'#fffdf5',
           backgroundSize:'100px', backgroundPosition:'center', backgroundRepeat:'repeat',
-          backdropFilter:'blur(6px)', boxShadow:'0 4px 20px rgba(0,0,0,0.8)',
-          minHeight:'160px', maxHeight:'160px', overflow:'visible', display:'flex', flexDirection:'column',
+          backdropFilter:'blur(6px)', boxShadow:'0 4px 18px rgba(31,41,55,0.12)',
+          minHeight:'118px', maxHeight:'118px', overflow:'visible', display:'flex', flexDirection:'column',
           alignItems:'center', justifyContent:'flex-start', padding:0
         }}>
           <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'center', width:'100%', padding:'10px 20px 0', gap:'14px', flex:1 }}>
             <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', flexShrink:0, alignSelf:'flex-end', position:'relative', bottom:'-12px' }}>
-              <div style={{ background:'rgba(0,0,0,0.95)', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#FFD700', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
+              <div style={{ background:'#ffffff', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#725800', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
                 {T.l1}<br />{T.l2}<br />{T.l3}
               </div>
             </div>
@@ -2830,10 +2843,10 @@ brian_button: "Continue Your Journey",
               <img src="/images/MAVJLogo.jpg" alt="MAVJ Logo" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }} onError={(e)=>{ e.target.onerror=null; e.target.src='/images/star-pattern.png'; }} />
             </div>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', flex:1, alignSelf:'flex-start', paddingTop:'8px', gap:'8px' }}>
-              <h1 style={{ fontFamily:"'Georgia','Times New Roman',serif", fontSize:'clamp(1.5rem,3vw,2.2rem)', fontWeight:'900', color:'#FFD700', textAlign:'center', margin:0, letterSpacing:'1.5px', textShadow:'0 0 18px rgba(255,215,0,0.95)', lineHeight:'1.1', whiteSpace:'nowrap' }}>
+              <h1 style={{ fontFamily:"'Georgia','Times New Roman',serif", fontSize:'clamp(1.5rem,3vw,2.2rem)', fontWeight:'900', color:'#725800', textAlign:'center', margin:0, letterSpacing:'1.5px', textShadow:'0 0 18px rgba(255,215,0,0.95)', lineHeight:'1.1', whiteSpace:'nowrap' }}>
                 {T.co}
               </h1>
-              <div style={{ color:'#00d4ff', fontSize:'clamp(0.65rem,1.3vw,0.85rem)', fontWeight:'800', letterSpacing:'0.7px', textTransform:'uppercase', textAlign:'center', textShadow:'0 0 10px rgba(0,212,255,0.85)', whiteSpace:'nowrap' }}>
+              <div style={{ color:'#075985', fontSize:'clamp(0.65rem,1.3vw,0.85rem)', fontWeight:'800', letterSpacing:'0.7px', textTransform:'uppercase', textAlign:'center', textShadow:'0 0 10px rgba(0,212,255,0.85)', whiteSpace:'nowrap' }}>
                 {T.tl}
               </div>
             </div>
@@ -2841,19 +2854,19 @@ brian_button: "Continue Your Journey",
               <img src="/images/MAVJLogo.jpg" alt="MAVJ Logo" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }} onError={(e)=>{ e.target.onerror=null; e.target.src='/images/star-pattern.png'; }} />
             </div>
             <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', flexShrink:0, alignSelf:'flex-end', position:'relative', bottom:'-12px' }}>
-              <div style={{ background:'rgba(0,0,0,0.95)', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#FFD700', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
+              <div style={{ background:'#ffffff', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#725800', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
                 {T.r1}<br />{T.r2}<br />{T.r3}
               </div>
             </div>
           </div>
           <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', display:'inline-flex', position:'absolute', bottom:'-20px', left:'50%', transform:'translateX(-50%)', zIndex:1901, whiteSpace:'nowrap' }}>
-            <div style={{ background:'rgba(0,0,0,0.97)', borderRadius:'4px', padding:'6px 28px', fontSize:'1.15rem', fontWeight:'900', color:'#00d4ff', textAlign:'center', textTransform:'uppercase', letterSpacing:'2.5px', textShadow:'0 0 14px rgba(0,212,255,0.9)' }}>
+            <div style={{ background:'#ffffff', borderRadius:'4px', padding:'6px 28px', fontSize:'1.15rem', fontWeight:'900', color:'#075985', textAlign:'center', textTransform:'uppercase', letterSpacing:'2.5px', textShadow:'0 0 14px rgba(0,212,255,0.9)' }}>
               {displayTitle}
             </div>
           </div>
         </section>
 
-        <div style={{ position:'fixed', bottom:'22px', left:'18px', zIndex:9998, background:'rgba(0,0,0,0.92)', padding:'6px 14px', borderRadius:'20px', border:'2px solid #FFD700', color:'#FFD700', fontSize:'0.72rem', fontWeight:'700', display:'flex', alignItems:'center', gap:'7px', whiteSpace:'nowrap', boxShadow:'0 4px 18px rgba(0,0,0,0.8)' }}>
+        <div style={{ position:'fixed', bottom:'22px', left:'18px', zIndex:9998, background:'rgba(0,0,0,0.92)', padding:'6px 14px', borderRadius:'20px', border:'2px solid #FFD700', color:'#725800', fontSize:'0.72rem', fontWeight:'700', display:'flex', alignItems:'center', gap:'7px', whiteSpace:'nowrap', boxShadow:'0 4px 18px rgba(0,0,0,0.8)' }}>
           <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#00ff00', animation:'pulse 2s infinite', flexShrink:0 }}></div>
           🔥 {liveUsers} Live
         </div>
@@ -2865,9 +2878,9 @@ brian_button: "Continue Your Journey",
           <span style={{ fontSize:'2rem', fontWeight:'900', color:'#000', textShadow:'0 0 4px rgba(255,215,0,0.5)' }}>Q</span>
         </div>
 
-        <div style={{ paddingTop:'235px', minHeight:'100vh', backgroundColor:'#000', color:'#ffffff', display:'flex', flexDirection:'column' }}>
+        <div style={{ paddingTop:'168px', minHeight:'100vh', backgroundColor:'#ffffff', color:'#1f2937', display:'flex', flexDirection:'column' }}>
           <div style={{ flex:1 }}>{children}</div>
-          <footer style={{ width:'100%', background:'linear-gradient(90deg,rgba(255,0,0,0.12),rgba(255,165,0,0.12))', borderTop:'2px solid', borderImage:'linear-gradient(90deg,#FF0000,#FF7F00,#FFFF00,#00FF00,#0000FF,#4B0082,#9400D3) 1', padding:'20px', textAlign:'center', fontSize:'0.7rem', color:'#ffccbc', fontWeight:'600' }}>
+          <footer style={{ width:'100%', background:'#fffaf0', borderTop:'2px solid', borderImage:'linear-gradient(90deg,#FF0000,#FF7F00,#FFFF00,#00FF00,#0000FF,#4B0082,#9400D3) 1', padding:'20px', textAlign:'center', fontSize:'0.7rem', color:'#4b5563', fontWeight:'600' }}>
             {T.foot}
           </footer>
         </div>
