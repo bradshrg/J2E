@@ -2790,7 +2790,7 @@ return (
             <nav className="site-navigation" aria-label="Primary navigation">
               {navItems
                 .filter((item) => item.type === 'nav')
-                .slice(0, 9)
+                .slice(0, 6)
                 .map((item) => (
                   <button
                     type="button"
@@ -2805,6 +2805,46 @@ return (
                     {item.label}
                   </button>
                 ))}
+
+              <details className="site-more-menu">
+                <summary
+                  className={
+                    navItems
+                      .filter((item) => item.type === 'nav')
+                      .slice(6)
+                      .some((item) => location.pathname === item.path)
+                      ? 'site-navigation__link is-active'
+                      : 'site-navigation__link'
+                  }
+                >
+                  More
+                </summary>
+
+                <div className="site-more-menu__panel">
+                  {navItems
+                    .filter((item) => item.type === 'nav')
+                    .slice(6)
+                    .map((item) => (
+                      <button
+                        type="button"
+                        key={item.path}
+                        className={
+                          location.pathname === item.path
+                            ? 'site-more-menu__item is-active'
+                            : 'site-more-menu__item'
+                        }
+                        onClick={(event) => {
+                          handleNav(item.path);
+                          event.currentTarget
+                            .closest('details')
+                            ?.removeAttribute('open');
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                </div>
+              </details>
             </nav>
 
             <div className="site-header__actions">
