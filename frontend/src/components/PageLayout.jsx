@@ -2754,142 +2754,156 @@ brian_button: "Continue Your Journey",
     return value ?? fallback ?? key;
   }, [T]);
 
-  return (
-    <TranslationContext.Provider value={{ currentLang, setCurrentLang, T, t, LANGS, translations: T }}>
-      <>
-        <nav style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000, borderTop: '5px solid #FFD700',
-          background: 'rgba(255,255,255,0.98)', padding: '0 6px',
-          borderBottom: '3px solid', borderImage: 'linear-gradient(45deg,violet,indigo,blue,green,yellow,orange,red) 1',
-          backdropFilter: 'blur(10px)', boxShadow: '0 4px 18px rgba(31,41,55,0.12)', height: '45px',
-          display: 'flex', alignItems: 'center', gap: '4px'
-        }}>
-          <span style={{ color:'#725800', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>◀</span>
-          <div style={{
-            display:'flex', overflowX:'auto', overflowY:'visible', gap:'5px', flex:1, padding:'0 4px',
-            scrollbarWidth:'none', msOverflowStyle:'none', WebkitOverflowScrolling:'touch', alignItems:'center'
-          }}>
-            {navItems.map((item) => {
-              if (item.type === 'dropdown') {
-                return (
-                  <div key="lang" style={{ position:'relative', flexShrink:0 }}>
-                    <div style={{ ...btnStyle(false), minWidth:'130px', justifyContent:'space-between', gap:'4px' }}
-                      onClick={() => setShowDropdown(p => !p)}
-                      onMouseEnter={(e) => { e.currentTarget.style.background='linear-gradient(135deg,rgba(255,215,0,0.5),rgba(0,212,255,0.5))'; e.currentTarget.style.boxShadow='0 0 15px rgba(255,215,0,1)'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.background='#ffffff'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
-                      <span>🌐 {activeLangObj.flag}</span>
-                      <span style={{ flex:1, textAlign:'center' }}>{currentLang}</span>
-                      <span style={{ fontSize:'0.5rem' }}>{showDropdown ? '▲' : '▼'}</span>
-                    </div>
-                    {showDropdown && (
-                      <div style={{
-                        position:'fixed', top:'46px', left:'8px', background:'rgba(5,5,15,0.99)', border:'2px solid',
-                        borderImage:'linear-gradient(135deg,#FFD700,#00d4ff,#FF00FF,#FFD700) 1', borderRadius:'6px',
-                        minWidth:'175px', maxHeight:'440px', overflowY:'auto', zIndex:99999, boxShadow:'0 10px 40px rgba(0,0,0,0.99)'
-                      }}>
-                        <div style={{ padding:'8px 14px', borderBottom:'1px solid rgba(255,215,0,0.4)', color:'#725800',
-                          fontSize:'0.65rem', fontWeight:'900', textTransform:'uppercase', letterSpacing:'1.2px', background:'rgba(255,215,0,0.08)' }}>
-                          🌐 Select Language
-                        </div>
-                        {LANGS.map((lang) => (
-                          <div key={lang.name} style={{
-                            background: lang.name===currentLang ? 'rgba(255,215,0,0.22)':'transparent',
-                            color:'#725800', borderBottom:'1px solid rgba(255,215,0,0.08)', padding:'9px 14px', cursor:'pointer',
-                            fontSize:'0.75rem', fontWeight:'700', display:'flex', alignItems:'center', gap:'10px', transition:'background 0.15s ease'
-                          }}
-                            onClick={() => handleLangChange(lang.name)}
-                            onMouseEnter={(e)=>{ e.currentTarget.style.background='rgba(255,215,0,0.38)'; }}
-                            onMouseLeave={(e)=>{ e.currentTarget.style.background= lang.name===currentLang ? 'rgba(255,215,0,0.22)':'transparent'; }}>
-                            <span style={{ fontSize:'1.15rem' }}>{lang.flag}</span>
-                            <span style={{ flex:1 }}>{lang.name}</span>
-                            {lang.name===currentLang && <span style={{ fontSize:'0.8rem', color:'#00ff88' }}>✓</span>}
-                          </div>
-                        ))}
-                      </div>
-                    )}
+return (
+    <TranslationContext.Provider
+      value={{
+        currentLang,
+        setCurrentLang,
+        T,
+        t,
+        LANGS,
+        translations: T,
+      }}
+    >
+      <div className="site-frame">
+        <header className="site-header">
+          <div className="site-header__inner">
+            <button
+              type="button"
+              className="site-brand"
+              onClick={() => handleNav('/')}
+              aria-label="Go to homepage"
+            >
+              <img
+                src="/images/MAVJLogo.jpg"
+                alt=""
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                }}
+              />
+              <span>
+                <strong>My Alkaline Vegan Journey</strong>
+                <small>Food · Wellness · Consciousness</small>
+              </span>
+            </button>
+
+            <nav className="site-navigation" aria-label="Primary navigation">
+              {navItems
+                .filter((item) => item.type === 'nav')
+                .slice(0, 9)
+                .map((item) => (
+                  <button
+                    type="button"
+                    key={item.path}
+                    className={
+                      location.pathname === item.path
+                        ? 'site-navigation__link is-active'
+                        : 'site-navigation__link'
+                    }
+                    onClick={() => handleNav(item.path)}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+            </nav>
+
+            <div className="site-header__actions">
+              <div className="language-control">
+                <button
+                  type="button"
+                  className="language-control__button"
+                  onClick={() => setShowDropdown((open) => !open)}
+                  aria-expanded={showDropdown}
+                >
+                  <span>{activeLangObj.flag}</span>
+                  <span>{currentLang}</span>
+                  <span aria-hidden="true">⌄</span>
+                </button>
+
+                {showDropdown && (
+                  <div className="language-menu">
+                    {LANGS.map((language) => (
+                      <button
+                        type="button"
+                        key={language.name}
+                        className={
+                          language.name === currentLang ? 'is-active' : ''
+                        }
+                        onClick={() => handleLangChange(language.name)}
+                      >
+                        <span>{language.flag}</span>
+                        <span>{language.name}</span>
+                      </button>
+                    ))}
                   </div>
-                );
-              }
-              return (
-                <div key={item.path} style={btnStyle(location.pathname === item.path)}
+                )}
+              </div>
+
+              <button
+                type="button"
+                className="header-search"
+                onClick={() => handleNav('/MAVJSearch')}
+                aria-label="Search"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div className="site-header__mobile-nav">
+            {navItems
+              .filter((item) => item.type === 'nav')
+              .slice(0, 9)
+              .map((item) => (
+                <button
+                  type="button"
+                  key={item.path}
+                  className={
+                    location.pathname === item.path ? 'is-active' : ''
+                  }
                   onClick={() => handleNav(item.path)}
-                  onMouseEnter={(e) => { e.currentTarget.style.background='linear-gradient(135deg,rgba(255,215,0,0.5),rgba(0,212,255,0.5))'; e.currentTarget.style.boxShadow='0 0 15px rgba(255,215,0,1)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background= location.pathname===item.path ? 'linear-gradient(135deg,rgba(255,215,0,0.3),rgba(0,212,255,0.3))':'#ffffff'; e.currentTarget.style.boxShadow='0 0 6px rgba(255,215,0,0.3)'; }}>
-                  <span>{item.icon}</span>
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '90px' }}>{item.label}</span>
-                </div>
-              );
-            })}
+                >
+                  {item.label}
+                </button>
+              ))}
           </div>
-          <span style={{ color:'#725800', fontSize:'0.75rem', flexShrink:0, opacity:0.55, userSelect:'none', pointerEvents:'none' }}>▶</span>
-        </nav>
+        </header>
 
-        <section style={{
-          position:'fixed', top:'45px', left:0, right:0, zIndex:1900, border:'3px solid',
-          borderImage:'linear-gradient(45deg,violet,indigo,blue,green,yellow,orange,red) 1',
-          backgroundColor:'#fffdf5',
-          backgroundSize:'100px', backgroundPosition:'center', backgroundRepeat:'repeat',
-          backdropFilter:'blur(6px)', boxShadow:'0 4px 18px rgba(31,41,55,0.12)',
-          minHeight:'118px', maxHeight:'118px', overflow:'visible', display:'flex', flexDirection:'column',
-          alignItems:'center', justifyContent:'flex-start', padding:0
-        }}>
-          <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'center', width:'100%', padding:'10px 20px 0', gap:'14px', flex:1 }}>
-            <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', flexShrink:0, alignSelf:'flex-end', position:'relative', bottom:'-12px' }}>
-              <div style={{ background:'#ffffff', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#725800', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
-                {T.l1}<br />{T.l2}<br />{T.l3}
-              </div>
+        {pageTitle && pageTitle !== 'HOME' && (
+          <div className="page-title-strip">
+            <p>My Alkaline Vegan Journey</p>
+            <h1>{displayTitle}</h1>
+          </div>
+        )}
+
+        <div className="site-content">{children}</div>
+
+        <footer className="site-footer">
+          <div className="site-footer__inner">
+            <div>
+              <strong>My Alkaline Vegan Journey</strong>
+              <p>
+                Plant-based nutrition, wellness education, and transformational
+                experiences.
+              </p>
             </div>
-            <div style={{ width:'110px', height:'110px', borderRadius:'50%', border:'3px solid #FFD700', overflow:'hidden', background:'transparent', boxShadow:'0 0 24px rgba(255,215,0,0.95)', animation:'heartbeat 1.4s ease-in-out infinite', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, alignSelf:'center' }}>
-              <img src="/images/MAVJLogo.jpg" alt="MAVJ Logo" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }} onError={(e)=>{ e.target.onerror=null; e.target.src='/images/star-pattern.png'; }} />
-            </div>
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', flex:1, alignSelf:'flex-start', paddingTop:'8px', gap:'8px' }}>
-              <h1 style={{ fontFamily:"'Georgia','Times New Roman',serif", fontSize:'clamp(1.5rem,3vw,2.2rem)', fontWeight:'900', color:'#725800', textAlign:'center', margin:0, letterSpacing:'1.5px', textShadow:'0 0 18px rgba(255,215,0,0.95)', lineHeight:'1.1', whiteSpace:'nowrap' }}>
-                {T.co}
-              </h1>
-              <div style={{ color:'#075985', fontSize:'clamp(0.65rem,1.3vw,0.85rem)', fontWeight:'800', letterSpacing:'0.7px', textTransform:'uppercase', textAlign:'center', textShadow:'0 0 10px rgba(0,212,255,0.85)', whiteSpace:'nowrap' }}>
-                {T.tl}
-              </div>
-            </div>
-            <div style={{ width:'110px', height:'110px', borderRadius:'50%', border:'3px solid #FFD700', overflow:'hidden', background:'transparent', boxShadow:'0 0 24px rgba(255,215,0,0.95)', animation:'heartbeat 1.4s ease-in-out infinite', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, alignSelf:'center' }}>
-              <img src="/images/MAVJLogo.jpg" alt="MAVJ Logo" style={{ width:'100%', height:'100%', objectFit:'cover', borderRadius:'50%' }} onError={(e)=>{ e.target.onerror=null; e.target.src='/images/star-pattern.png'; }} />
-            </div>
-            <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', flexShrink:0, alignSelf:'flex-end', position:'relative', bottom:'-12px' }}>
-              <div style={{ background:'#ffffff', borderRadius:'4px', padding:'12px 16px', fontSize:'0.75rem', fontWeight:'800', color:'#725800', lineHeight:'1.7', textAlign:'center', whiteSpace:'nowrap' }}>
-                {T.r1}<br />{T.r2}<br />{T.r3}
-              </div>
+
+            <div className="site-footer__links">
+              <button type="button" onClick={() => handleNav('/AboutUs')}>
+                About
+              </button>
+              <button type="button" onClick={() => handleNav('/ContactUs')}>
+                Contact
+              </button>
+              <button type="button" onClick={() => handleNav('/MAVJSearch')}>
+                Search
+              </button>
             </div>
           </div>
-          <div style={{ background:'linear-gradient(135deg,violet,indigo,blue,green,yellow,orange,red)', borderRadius:'5px', padding:'2px', display:'inline-flex', position:'absolute', bottom:'-20px', left:'50%', transform:'translateX(-50%)', zIndex:1901, whiteSpace:'nowrap' }}>
-            <div style={{ background:'#ffffff', borderRadius:'4px', padding:'6px 28px', fontSize:'1.15rem', fontWeight:'900', color:'#075985', textAlign:'center', textTransform:'uppercase', letterSpacing:'2.5px', textShadow:'0 0 14px rgba(0,212,255,0.9)' }}>
-              {displayTitle}
-            </div>
-          </div>
-        </section>
 
-        <div style={{ position:'fixed', bottom:'22px', left:'18px', zIndex:9998, background:'rgba(0,0,0,0.92)', padding:'6px 14px', borderRadius:'20px', border:'2px solid #FFD700', color:'#725800', fontSize:'0.72rem', fontWeight:'700', display:'flex', alignItems:'center', gap:'7px', whiteSpace:'nowrap', boxShadow:'0 4px 18px rgba(0,0,0,0.8)' }}>
-          <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#00ff00', animation:'pulse 2s infinite', flexShrink:0 }}></div>
-          🔥 {liveUsers} Live
-        </div>
-
-        <div style={{ position:'fixed', bottom:'22px', right:'22px', zIndex:9998, width:'56px', height:'56px', borderRadius:'50%', background:'linear-gradient(135deg, #FFD700, #FFA500)', border:'3px solid #FFD700', display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', boxShadow:'0 4px 20px rgba(255,215,0,0.6)', transition:'all 0.3s ease' }}
-          onClick={() => { console.log('Q button clicked'); }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 30px rgba(255,215,0,0.9)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(255,215,0,0.6)'; }}>
-          <span style={{ fontSize:'2rem', fontWeight:'900', color:'#000', textShadow:'0 0 4px rgba(255,215,0,0.5)' }}>Q</span>
-        </div>
-
-        <div style={{ paddingTop:'168px', minHeight:'100vh', backgroundColor:'#ffffff', color:'#1f2937', display:'flex', flexDirection:'column' }}>
-          <div style={{ flex:1 }}>{children}</div>
-          <footer style={{ width:'100%', background:'#fffaf0', borderTop:'2px solid', borderImage:'linear-gradient(90deg,#FF0000,#FF7F00,#FFFF00,#00FF00,#0000FF,#4B0082,#9400D3) 1', padding:'20px', textAlign:'center', fontSize:'0.7rem', color:'#4b5563', fontWeight:'600' }}>
-            {T.foot}
-          </footer>
-        </div>
-
-        <style>{`
-          @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.55; transform:scale(1.18); } }
-          @keyframes heartbeat { 0%,100% { transform:scale(1); } 14% { transform:scale(1.1); } 28% { transform:scale(1); } 42% { transform:scale(1.1); } 56% { transform:scale(1); } }
-        `}</style>
-      </>
+          <p className="site-footer__notice">{T.foot}</p>
+        </footer>
+      </div>
     </TranslationContext.Provider>
   );
 };
